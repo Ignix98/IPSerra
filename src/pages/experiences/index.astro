@@ -11,6 +11,8 @@ const experiences = await getCollection('experiences');
 experiences.sort((a, b) => {
   return new Date(b.data.startDate) - new Date(a.data.startDate);
 });
+
+const base = import.meta.env.BASE_URL; // /bento/
 ---
 <IndexPageLayout title="Experiences"
                  description="Places I have worked in, this is just a rough timeline, not include all details."
@@ -29,7 +31,7 @@ experiences.sort((a, b) => {
             <TableCell className="font-medium ">
               <div class="flex flex-col gap-1 min-w-20">
                 <a
-                  href={'/experiences/' + entry.slug ?? ''}
+                  href={base+'/experiences/' + entry.slug ?? ''}
                   class={`font-semibold hover:font-extrabold ${entry?.slug ? 'text-primary' : 'text-foreground'}`}
                 >
                   {entry.data.title}
@@ -46,7 +48,7 @@ experiences.sort((a, b) => {
 
                 <div class="flex flex-0 gap-1 flex-wrap">
                   {entry.data.tags.map((i) => (
-                    <a href={`tags/${i}`}>
+                    <a href={`${base}/tags/${i}`}>
                       <Badge className="truncate">{i}</Badge>
                     </a>
                   ))}
@@ -55,7 +57,7 @@ experiences.sort((a, b) => {
               </div>
             </TableCell>
             <TableCell>
-              <a href={'/experiences/' + entry.slug}>
+              <a href={base+'/experiences/' + entry.slug}>
                 <ArrowRight/>
               </a>
             </TableCell>

@@ -5,9 +5,10 @@ const SimpleCloud = ({
 }: {
   words: { value: string; count: number }[];
 }) => {
+  const base = import.meta.env.BASE_URL;
   const handleRedirect = (tag: { value: string }) => {
     // Redirect using window.location
-    window.location.href = `/tags/${tag.value}`;
+    window.location.href = `${base}/tags/${tag.value}`;
   };
 
   return (

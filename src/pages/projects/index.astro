@@ -12,6 +12,8 @@ const projects = await getCollection('projects');
 projects.sort((a: any, b: any) => {
   return new Date(b.data.startDate) - new Date(a.data.startDate);
 });
+
+const base = import.meta.env.BASE_URL; // /bento/
 ---
 
 <IndexPageLayout title="Projects" description="Projects I have worked on recently." subTitle="My Projects">
@@ -21,7 +23,7 @@ projects.sort((a: any, b: any) => {
     projects.map((entity: any) => (
       <ProjectCard
         key={entity.data.title}
-        href={'/projects/' + entity.slug}
+        href={base + '/projects/' + entity.slug}
         heading={entity.data.title}
         subheading={entity.data.description}
         altText={entity?.data?.image.alt}

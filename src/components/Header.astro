@@ -1,9 +1,9 @@
 ---
-import {buttonVariants} from '../components/ui/button'
-import {ModeToggle} from '../components/react/ThemeToggle'
-import {PROFILE} from "../content/profileData";
+import { buttonVariants } from './ui/button'
+import { ModeToggle } from './react/ThemeToggle'
+import { PROFILE } from '../content/profileData';
 
-const SITE = PROFILE.site
+const base = import.meta.env.BASE_URL; // /bento/
 ---
 
 <header
@@ -13,21 +13,21 @@ const SITE = PROFILE.site
     class="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0"
   >
     <div class="flex gap-6 md:gap-10">
-      <a href="/" class="flex items-center space-x-2">
+      <a href={base} class="flex items-center space-x-2">
         <span class="inline-block font-bold">{PROFILE.name}</span>
       </a>
     </div>
     <div class="flex flex-1 items-center justify-end space-x-4">
       <nav class="flex items-center space-x-1">
         <a
-          href="/posts"
-          class={buttonVariants({variant: 'ghost'})}
+          href={`${base}/posts`}
+          class={buttonVariants({ variant: 'ghost' })}
         >
           Blog
         </a>
         <a
-          href="/projects"
-          class={buttonVariants({variant: 'ghost'})}
+          href={`${base}/projects`}
+          class={buttonVariants({ variant: 'ghost' })}
         >
           Projects
         </a>
@@ -35,7 +35,7 @@ const SITE = PROFILE.site
           href={PROFILE.repo}
           target="_blank"
           rel="noreferrer"
-          class={buttonVariants({variant: 'ghost'})}
+          class={buttonVariants({ variant: 'ghost' })}
         >
           GitHub
         </a>
