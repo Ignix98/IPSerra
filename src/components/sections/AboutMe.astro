@@ -6,7 +6,6 @@ import { PROFILE } from "../../content/profileData";
 const tagsMap = await getAndGroupUniqueTags();
 
 const skills = PROFILE.skills;
-const base = import.meta.env.BASE_URL; // /bento/
 ---
 
 <div class="flex flex-col gap-2 animate-appear">
@@ -30,7 +29,7 @@ const base = import.meta.env.BASE_URL; // /bento/
           return (
 
             <li>
-              <a href=`${base}/tags/${skill}` class=" hover:font-bold">
+              <a href=`/tags/${skill}` class=" hover:font-bold">
                 {skill}
               </a>
             </li>

@@ -11,7 +11,6 @@ posts = posts.sort((a, b) => {
   return new Date(b.data.startDate) - new Date(a.data.startDate);
 });
 posts = posts.slice(0, 2);
-const base = import.meta.env.BASE_URL; // /bento/
 ---
 
 
@@ -20,7 +19,7 @@ const base = import.meta.env.BASE_URL; // /bento/
     posts.map((project) => (
       <div>
         <h3 class="text-lg font-semibold text-primary">
-          <a href={`${base}/posts/${project.slug}`} class="hover:underline line-clamp-2">
+          <a href={`/posts/${project.slug}`} class="hover:underline line-clamp-2">
             {project.data.title}
           </a>
         </h3>
@@ -33,7 +32,7 @@ const base = import.meta.env.BASE_URL; // /bento/
       </div>
     ))
   }
-  <a href={`${base}/posts`}>
+  <a href="/posts">
     <Button variant="link" className="pl-0"> View More</Button>
   </a>
 </div>

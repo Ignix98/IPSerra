@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 import Card from '../Card.astro'
 import { Button } from '../ui/button'
-import { formateLocalDate } from '../../lib/utils';
+import { formateLocalDate } from "../../lib/utils";
 
 
 let projects = await getCollection('projects');
@@ -13,7 +13,6 @@ projects.sort((a: any, b: any) => {
 });
 
 projects = projects.slice(0, 3);
-const base = import.meta.env.BASE_URL; // /bento/
 ---
 
 
@@ -22,7 +21,7 @@ const base = import.meta.env.BASE_URL; // /bento/
     projects.slice(0, 3).map((project) => (
       <div>
         <h3 class="text-lg font-semibold text-primary">
-          <a href={`${base}/projects/${project.slug}`} class="hover:underline">
+          <a href={`/projects/${project.slug}`} class="hover:underline">
             {project.data.title}
           </a>
         </h3>
@@ -35,7 +34,7 @@ const base = import.meta.env.BASE_URL; // /bento/
       </div>
     ))
   }
-  <a href={base + '/projects'}>
+  <a href="/projects">
     <Button variant="link" className="pl-0"> View More</Button>
   </a>
 </div>

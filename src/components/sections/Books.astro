@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 
 
 let books = await getCollection('books');
-const base = import.meta.env.BASE_URL; // /bento/
 
 books.sort(
   (a, b) => {
@@ -24,13 +23,13 @@ books = books.slice(0, 5);
         {books.map(
           (book) => (
             <li>
-              <a href={`${base}/books/${book.slug}`} class=" hover:font-bold hover:underline">{book.data.title}</a>
+              <a href={`/books/${book.slug}`} class=" hover:font-bold hover:underline">{book.data.title}</a>
               <span class="text-xs font-thin italic">- {book.data.author}</span>
             </li>
           )
         )}
       </ul>
-      <a href={base+"/books"}>
+      <a href="/books">
         <Button variant="link" className="pl-0"> View More</Button>
       </a>
     </div>

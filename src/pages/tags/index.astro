@@ -17,8 +17,6 @@ tagsMap.forEach((value, key) => {
 // sort tags by frequency
 tagsWithFrequency.sort((a, b) => b.count - a.count);
 
-const base = import.meta.env.BASE_URL || '/';
-
 ---
 <IndexPageLayout title="Tags"
                  description="All tags used in this website"
@@ -51,7 +49,7 @@ const base = import.meta.env.BASE_URL || '/';
           tagsWithFrequency.map((tag) => {
             return (
               <li>
-                <a href={`${base}/tags/${tag.value}`} class="hover:font-bold">
+                <a href={`/tags/${tag.value}`} class="hover:font-bold">
                   {tag.value} ({tag.count})
                 </a>
               </li>

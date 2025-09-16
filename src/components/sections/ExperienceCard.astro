@@ -13,7 +13,6 @@ experiences.sort((a: any, b: any) => {
 });
 
 experiences = experiences.slice(0, 3);
-const base = import.meta.env.BASE_URL; // /bento/
 ---
 
 
@@ -22,7 +21,7 @@ const base = import.meta.env.BASE_URL; // /bento/
     experiences.slice(0, 3).map((exp) => (
       <div>
         <h4 class="text-md font-medium">{exp.data.title}</h4>
-        <a class="text-sm text-primary hover:underline" href={ base+'/experiences/' + exp?.slug ?? ''}>
+        <a class="text-sm text-primary hover:underline" href={ '/experiences/' + exp?.slug ?? ''}>
           {exp.data.company}
         </a>
         <p class="text-sm text-gray-600">
@@ -32,7 +31,7 @@ const base = import.meta.env.BASE_URL; // /bento/
       </div>
     ))
   }
-  <a href={base+"/experiences"}>
+  <a href="/experiences">
     <Button variant="link" className="pl-0"> View More</Button>
   </a>
 </div>

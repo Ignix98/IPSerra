@@ -13,8 +13,6 @@ const posts = await getCollection('posts');
 posts.sort((a: any, b: any) => {
   return new Date(b.data.startDate) - new Date(a.data.startDate);
 });
-
-const base = import.meta.env.BASE_URL; // /bento/
 ---
 
 <IndexPageLayout title="Blog" description="This is a simple blog for my this profile website."
@@ -26,7 +24,7 @@ const base = import.meta.env.BASE_URL; // /bento/
         <ProjectCard
           class=""
           key={entity.data.title}
-          href={base+'/posts/' + entity.slug}
+          href={'/posts/' + entity.slug}
           heading={entity.data.title}
           subheading={entity.data.description}
           altText={entity?.data?.image.alt}
