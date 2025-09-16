@@ -5,7 +5,7 @@ import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tehctim42.com',
+  site: 'https://techtim42.bai.uno',
   integrations: [
     react(),
     tailwind({

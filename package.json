@@ -1,5 +1,5 @@
 {
-  "site": "https://techtim42.com",
+  "site": "https://techtim42.bai.uno",
   "id": "TechTim42",
   "name": "@tim-hub/techtim42",
   "version": "1.0.0",
@@ -7,13 +7,13 @@
   "description": "Learn, Share and Grow ❤️ -- Software Engineer | AWS Professional | Open Source Lover  --☘️ Be more productive, Better in communicating, Contribute more to community ",
   "author": {
     "name": "Tech Tim",
-    "url": "https://TechTim42.com"
+    "url": "https://techtim42.bai.uno"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/tim-hub/techtim-astro-bento-portfolio"
   },
-  "homepage": "https://techtim42.com",
+  "homepage": "https://techtim42.bai.uno",
   "keywords": [
     "astro",
     "portfolio",
