@@ -12,6 +12,12 @@ import CertificateCard from "../components/sections/CertificateCard.astro";
 import { PROFILE } from "../content/profileData";
 import BlogCard from "../components/sections/BlogCard.astro";
 const SITE = PROFILE.site;
+
+
+const words = PROFILE.words ?? [];
+const randomWord = words.length
+? words[Math.floor(Math.random() * words.length)]
+: "";
 ---
 <BaseLayout title={SITE.SEO.title} description={SITE.SEO.description}>
   <div
@@ -24,14 +30,17 @@ const SITE = PROFILE.site;
     transition:animate="fade"
     class="relative m-auto w-full max-w-6xl overflow-hidden p-2 sm:p-4 md:p-6 flex flex-col gap-4"
   >
+    
+
     <Card>
       <div class="flex h-full flex-col justify-between">
         <blockquote class="mt-6 border-l-2 pl-6 italic">
-          “{PROFILE.words[0]}”
+          “{randomWord}”
         </blockquote>
         <p class="mt-2 text-xs"></p>
       </div>
     </Card>
+
 
     <Card>
       <IntroCard />

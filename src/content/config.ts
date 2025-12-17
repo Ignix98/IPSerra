@@ -5,6 +5,7 @@ const projectCollection = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
+    summary: z.string().optional(),
     startDate: z.date(),
     description: z.string(),
     image: z

@@ -1,7 +1,8 @@
 ---
 slug: "simon-bbb"
-title: "SIMON en BeagleBone Black"
-description: "Implementación del juego clásico Simón en una BeagleBone Black, con botones arcade iluminados, zumbador y diales para ajustar velocidad/tiempo de respuesta."
+summary: "Juego Simón en BeagleBone Black: memoriza la secuencia, repítela y aumenta la dificultad con controles físicos."
+title: "SIMON"
+description: "Juego Simón completo en BeagleBone Black (tipo Raspberry Pi): genera secuencias de luces/sonidos que el jugador debe repetir, con ajuste de velocidad y tiempo de respuesta; desarrollado desde cero a nivel de electrónica y software embebido en C++ con máquina de estados y concurrencia."
 startDate: 2025-01-01
 image:
   {
@@ -14,12 +15,11 @@ tags:
 
 ![](https://raw.githubusercontent.com/Ignix98/SIMON_BBB_IPERSER/main/doc/simon_3.jpeg)
 
-Proyecto del Máster (MUAII) en la asignatura **Interfaces Físicos y Sistemas Empotrados (2025)**: implementación del juego **Simon** sobre **BeagleBone Black**.
+Proyecto del Máster (MUAII) en la asignatura **Interfaces Físicos y Sistemas Empotrados (2025)**: implementación del juego **Simón** en una **BeagleBone Black** (similar a una Raspberry Pi).
 
-El sistema usa **6 botones arcade con LED**, **un zumbador** para los tonos y **dos diales** para ajustar **velocidad** y **tiempo de respuesta**.  
-La lógica se organiza en **9 estados**, cada uno en su **propio hilo**, y se gestionan eventos de **START/PAUSA** mediante **interrupciones GPIO**.
+El juego **muestra una secuencia** de **luces y tonos** y el jugador debe **repetirla** correctamente para avanzar; incluye **6 botones arcade iluminados**, **zumbador** y **dos diales** para ajustar **velocidad** y **ventana de respuesta**.  
+Con el **zumbador** se implementaron **sonidos para las pulsaciones**, **cambios de fase**, **pausa**, etc., y en la pantalla de espera (antes de START) se añadieron **melodías** estilo **Zelda/Mario** mientras el jugador inicia la partida.  
+Se desarrolló **desde cero**, reforzando mucho el aprendizaje de **electrónica** y **sistemas embebidos**, programado en **C++** usando **máquina de estados** y **programación concurrente** (hilos + eventos por **interrupciones GPIO**).
 
 - Repo: https://github.com/Ignix98/SIMON_BBB_IPERSER
 - Demo: https://youtube.com/shorts/EQTmY3pivEk?feature=share
-
-

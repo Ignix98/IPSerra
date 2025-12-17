@@ -1,41 +1,52 @@
 ---
 import { getCollection } from "astro:content";
-import Card from '../Card.astro'
-import { Button } from '../ui/button'
+import { Button } from "../ui/button";
 import { formateLocalDate } from "../../lib/utils";
+import { ArrowRight } from "lucide-react";
 
+let projects = await getCollection("projects");
 
-let projects = await getCollection('projects');
-
-// sort projects by dateStart DESC
 projects.sort((a: any, b: any) => {
-  return new Date(b.data.startDate) - new Date(a.data.startDate);
+  return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
 });
 
 projects = projects.slice(0, 3);
 ---
 
-
-<div class="mt-2 space-y-4">
+<div class="mt-2 flex flex-col gap-3">
   {
-    projects.slice(0, 3).map((project) => (
-      <div>
-        <h3 class="text-lg font-semibold text-primary">
-          <a href={`/projects/${project.slug}`} class="hover:underline">
-            {project.data.title}
-          </a>
-        </h3>
-        <p class="text-sm">
-          {project.data.description}
-        </p>
-        <p class="text-sm text-gray-600">
-          {formateLocalDate(project.data.startDate)} {project.data?.endDate ? '- ' + formateLocalDate(project.data.endDate) : ''}
-        </p>
-      </div>
-    ))
+    projects.map((project) => {
+      const href = `/projects/${project.slug}`;
+
+      return (
+        <a
+          href={href}
+          class="block w-full rounded-lg border p-4 transition-colors hover:bg-muted/30 hover:border-foreground/20"
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <p class="text-base font-semibold leading-tight text-primary">
+                {project.data.title}
+              </p>
+
+              <p class="mt-1 text-sm text-muted-foreground">
+                {project.data.summary}
+              </p>
+
+              <p class="mt-2 text-sm text-muted-foreground">
+                {formateLocalDate(project.data.startDate)}
+                {project.data?.endDate ? ` — ${formateLocalDate(project.data.endDate)}` : ""}
+              </p>
+            </div>
+
+            <ArrowRight className="shrink-0 opacity-70" />
+          </div>
+        </a>
+      );
+    })
   }
+
   <a href="/projects">
-    <Button variant="link" className="pl-0"> View More</Button>
+    <Button variant="link" className="pl-0">View More</Button>
   </a>
 </div>
-

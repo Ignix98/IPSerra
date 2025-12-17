@@ -1,38 +1,64 @@
-
 ---
 import { getCollection } from "astro:content";
-import Card from '../Card.astro'
-import { Button } from '../ui/button'
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 import { formateLocalDate } from "../../lib/utils";
+import { ArrowRight } from "lucide-react";
 
-let experiences = await getCollection('experiences');
+let experiences = await getCollection("experiences");
 
-// sort projects by dateStart DESC
+// sort by startDate DESC
 experiences.sort((a: any, b: any) => {
-  return new Date(b.data.startDate) - new Date(a.data.startDate);
+  return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
 });
 
 experiences = experiences.slice(0, 3);
 ---
 
-
-<div class="mt-2 space-y-4">
+<div class="mt-2 flex flex-col gap-3">
   {
-    experiences.slice(0, 3).map((exp) => (
-      <div>
-        <h4 class="text-md font-medium">{exp.data.title}</h4>
-        <a class="text-sm text-primary hover:underline" href={ '/experiences/' + exp?.slug ?? ''}>
-          {exp.data.company}
-        </a>
-        <p class="text-sm text-gray-600">
-         {formateLocalDate(exp.data.startDate)} {exp.data?.endDate ? '- ' + formateLocalDate(exp.data.endDate) : ''}
+    experiences.map((exp) => {
+      const href = `/experiences/${exp?.slug ?? ""}`;
 
-        </p>
-      </div>
-    ))
+      return (
+        <a
+          href={href}
+          class="block w-full rounded-lg border p-4 transition-colors hover:bg-muted/30 hover:border-foreground/20"
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div class="min-w-0">
+              <p class="font-medium leading-tight">{exp.data.title}</p>
+
+              <p class="mt-1 text-base font-semibold text-foreground">
+                {exp.data.company}
+              </p>
+
+              <p class="mt-1 text-sm text-muted-foreground">
+                {formateLocalDate(exp.data.startDate)}
+                {exp.data?.endDate ? ` — ${formateLocalDate(exp.data.endDate)}` : ""}
+              </p>
+
+              {
+                exp.data.tags?.length ? (
+                  <div class="mt-3 flex flex-wrap gap-1">
+                    {exp.data.tags.map((t) => (
+                      <Badge className="cursor-default">{t}</Badge>
+                    ))}
+                  </div>
+                ) : null
+              }
+            </div>
+
+            <ArrowRight className="shrink-0 opacity-70" />
+          </div>
+        </a>
+      );
+    })
   }
+
   <a href="/experiences">
-    <Button variant="link" className="pl-0"> View More</Button>
+    <Button variant="link" className="pl-0">View More</Button>
   </a>
 </div>
+
 
