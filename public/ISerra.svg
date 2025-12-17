@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IS Serra">
+  <!-- Chip outline -->
+  <rect x="14" y="14" width="36" height="36" rx="8" fill="none" stroke="currentColor" stroke-width="4"></rect>
+
+  <!-- Pins (minimal, para que no se emborronen a 16px) -->
+  <g stroke="currentColor" stroke-width="4" stroke-linecap="round">
+    <path d="M12 22 H16"></path><path d="M12 32 H16"></path><path d="M12 42 H16"></path>
+    <path d="M48 22 H52"></path><path d="M48 32 H52"></path><path d="M48 42 H52"></path>
+  </g>
+
+  <!-- IS as PCB traces -->
+  <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- I -->
+    <path d="M26 22 V42"></path>
+
+    <!-- S (suave y seria) -->
+    <path d="M42 24
+             C42 20 36 20 33 23
+             C30 26 31 30 36 31
+             C41 32 42 34 42 38
+             C42 44 33 45 31 40"></path>
+  </g>
+
+  <!-- “Vías” (pads) para toque electrónico -->
+  <g fill="currentColor">
+    <circle cx="42" cy="24" r="2.4"></circle>
+    <circle cx="31" cy="40" r="2.4"></circle>
+  </g>
+</svg>

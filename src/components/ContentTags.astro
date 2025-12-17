@@ -1,13 +1,15 @@
 ---
 import { Badge } from "./ui/badge";
-const {tags} = Astro.props;
+const { tags } = Astro.props;
 ---
-
 
 <div class="flex flex-0 gap-1 flex-wrap">
   {tags.map((i) => (
-    <a href={`/tags/${i}`}>
-      <Badge className="truncate">{i}</Badge>
-    </a>
+    <span aria-hidden="true">
+      <Badge className="truncate cursor-default select-none pointer-events-none">
+        {i}
+      </Badge>
+    </span>
   ))}
 </div>
+

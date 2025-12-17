@@ -1,77 +1,97 @@
 export const PROFILE = {
   site: {
     SEO: {
-      //     more complicated description for SEO
-      title: "Tech Tim (@TechTim42) - Learn, Share and Grow ❤️",
+      title: "IPSerra - Blog de Tecnología, Desarrollo y Firmware",
       description:
-        "Learn, Share and Grow ❤️ -- Software Engineer | AWS Professional | Open Source Lover  --☘️ Be more productive, Better in communicating, Contribute more to community. | Tech Tim's New Astro Portfolio",
+        "Portfolio y blog de tecnología de Ignacio Pérez Serra (ipserra). Proyectos, guías y artículos sobre desarrollo, sistemas y firmware/embebidos.",
     },
   },
-  timezone: "Australia/Sydney",
-  language: "en-AU",
-  firstName: "Tim",
-  name: "Tech Tim",
-  headLine: "Learn, Share and Grow ❤️",
+  timezone: "Europe/Madrid",
+  language: "es-ES",
+
+  firstName: "Ignacio Pérez Serra",
+  name: "IPSerra",
+  headLine: "",
   headLine2:
-    "I enjoy providing software solutions and bring ideas to life and solve real-world problems.",
-  website: "https://techtim42.bai.uno",
-  repo: "https://github.com/tim-hub/techtim-astro-bento-portfolio",
-  avatarUrl: "https://techtim42.bai.uno/techtim42.webp",
+    "Me gusta entender las cosas desde el metal: de los videojuegos, lo retro y los ordenadores pasé a preguntarme qué hay detrás de cada “click” — bits, señales, buses, interrupciones, timing y ese por qué que siempre acaba en un datasheet. Además, me encantan los mechas y todo lo que huela a ingeniería “con personalidad”. Hoy disfruto construyendo sistemas donde el software toca el mundo real: firmware, electrónica y robots (con alguna noche de debug incluida).",
+
+  website: "https://tudominio.es", // cámbialo cuando lo tengas
+  repo: "https://github.com/tuusuario/ipserra", // cámbialo
+  avatarUrl: "/_MG_1198.webp", // pon tu avatar en /public/avatar.webp
+
   shortIntros: [
-    "💻 Software/AI Engineer | Open Source Lover | Self-starter",
-    "☁️ AWS Professional | AWS Community Builder",
-    "☘️ Passionate about Dev Experience(DX) Improvement and bringing ideas to life",
-    "📈 Unprofessional Investor",
-    "🌱 Part-time blogger and unprofessional Youtuber",
-    "📚 Book reader | 🥏 Frisbee Ultimate Player | 🎲 Board Game Player",
+    "💻 Programador e ingeniero | Firmware & Embedded (nivelando habilidades)",
+    "🕹️ Retro + videojuegos: de los 8/16-bit a leer datasheets “por diversión”",
+    "⚙️ Me pierdo feliz entre buses, timings, interrupciones y registros",
+    "🔧 Del “¿por qué no arranca?” al “ah, era el pull-up / el clock / el reset”",
+    "🤖 Robots y cacharreo: cuando el software mueve motores y lee sensores",
+    "🐧 Linux | Debug como deporte de contacto",
   ],
-  words: ["As each one has received a gift, minister it to one another"],
+
+  words: ["Cualquier tecnología suficientemente avanzada es indistinguible de la magia - Arthur C. Clarke"],
+
   skills: [
-    "Python / Django",
-    "JavaScript",
-    "Typescript",
-    "AWS",
-    "Cloud Computing",
-    "Kubernetes",
-    "React",
-    "Node.js",
-    "Postgres",
-    "SQL",
-    "Astro",
+    "Lenguajes: C (Embedded C), C++, Python, Java",
+    "Firmware / Embedded Systems",
+    "Microcontroladores: ARM Cortex-M, ESP32, STM32, Arduino",
+    "Sistemas Operativos: Linux (Ubuntu, Debian), Windows",
+    "Git",
+    "Tools: KiCad, LTSpice, SolidWorks",
   ],
+
   links: {
-    github: "https://github.com/tim-hub",
-    medium: "https://medium.com/@TechTim42",
-    twitter: "https://twitter.com/TechTim42",
-    bluesky: "https://bsky.app/profile/techtim.bsky.social",
-    thread: "https://www.threads.net/@techtim2024",
-    mastodon: "https://mastodon.social/@techtim42",
-    youtube: "https://www.youtube.com/@techtim42",
-    stackoverflow: "https://stackoverflow.com/users/5249708/tim",
-    devto: "https://dev.to/timhub",
+    github: "https://github.com/Ignix98/",
+    medium: "",
+    twitter: "",
+    bluesky: "",
+    thread: "",
+    mastodon: "",
+    youtube: "",
+    stackoverflow: "",
+    devto: "",
     goodreads: "",
+    linkedin: "linkedin.com/in/ignacio-perez-serra/", // si lo tienes
   },
+
+  // Estudios
   studies: [
-    // studies, qualifications and certifications
     {
-      title: "Master of Applied Computing",
+      title: "Máster Universitario en Automática e Informática Industrial (2024–2026)",
       level: "Master",
+      institution: "Universitat Politècnica de València (UPV)",
     },
     {
-      title: "AWS Cloud Professional",
-      institution: "AWS",
+      title:
+        "Grado en Ingeniería Electrónica Industrial (2019–2024) · TFG: Caracterización y validación del modelo dinámico de un robot móvil · Nota: 9,5",
+      level: "Grado",
+      institution: "Universitat de València (UV)",
     },
     {
-      title: "Neo4j Certified Professional",
-      institution: "Neo4j",
-    },
-    {
-      title: "ICAgile Certified Professional",
-      institution: "ICP",
-    },
-    {
-      title: "Full Stack Observability Practitioner",
-      institution: "New Relic",
+      title: "CFGS · Desarrollo de Aplicaciones Multiplataforma (2017–2019)",
+      level: "CFGS",
+      institution: "IES Henri Matisse",
     },
   ],
+
+  // Certificados
+  certificates: [
+    {
+      title:
+        "(MCU1) Learn bare metal driver development using Embedded C (STM32: GPIO, I2C, SPI, USART) - En proceso",
+      level: "Curso ",
+      institution: "Udemy",
+    },
+    {
+      title: "Self Driving and ROS - Learn Doing! Odometry & Control",
+      level: "Curso",
+      institution: "Udemy · 19,5 horas · Instructor: Antonio Brandi",
+    },
+    {
+      title:
+        "Curso de extensión universitaria · Experimentación con equipos electrónicos para medidas de bajo nivel",
+      level: "Extensión universitaria",
+      institution: "Universitat de València (UV) · Julio 2024",
+    },
+  ],
+
 };

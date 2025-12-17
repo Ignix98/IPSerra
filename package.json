@@ -1,10 +1,10 @@
 {
   "site": "https://techtim42.bai.uno",
   "id": "TechTim42",
-  "name": "@tim-hub/techtim42",
+  "name": "@IPSerra",
   "version": "1.0.0",
-  "fullName": "ipserra",
-  "description": "Learn, Share and Grow ❤️ -- Software Engineer | AWS Professional | Open Source Lover  --☘️ Be more productive, Better in communicating, Contribute more to community ",
+  "fullName": "Ignacio Pérez Serra",
+  "description": "  Firmware engineer portfolio built with Astro, React, TailwindCSS, and Shadcn/UI. Showcasing projects, blog posts.",
   "author": {
     "name": "Ignacio Pérez Serra",
     "url": "https://techtim42.bai.uno"

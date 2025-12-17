@@ -1,0 +1,25 @@
+---
+slug: "simon-bbb"
+title: "SIMON en BeagleBone Black"
+description: "Implementación del juego clásico Simón en una BeagleBone Black, con botones arcade iluminados, zumbador y diales para ajustar velocidad/tiempo de respuesta."
+startDate: 2025-01-01
+image:
+  {
+    url: "https://raw.githubusercontent.com/Ignix98/SIMON_BBB_IPERSER/main/doc/simon_3.jpeg",
+    alt: "SIMON en BeagleBone Black",
+  }
+tags:
+  ["Sistemas Empotrados", "BeagleBone Black", "GPIO", "Linux", "C++", "Concurrencia", "Hardware"]
+---
+
+![](https://raw.githubusercontent.com/Ignix98/SIMON_BBB_IPERSER/main/doc/simon_3.jpeg)
+
+Proyecto del Máster (MUAII) en la asignatura **Interfaces Físicos y Sistemas Empotrados (2025)**: implementación del juego **Simon** sobre **BeagleBone Black**.
+
+El sistema usa **6 botones arcade con LED**, **un zumbador** para los tonos y **dos diales** para ajustar **velocidad** y **tiempo de respuesta**.  
+La lógica se organiza en **9 estados**, cada uno en su **propio hilo**, y se gestionan eventos de **START/PAUSA** mediante **interrupciones GPIO**.
+
+- Repo: https://github.com/Ignix98/SIMON_BBB_IPERSER
+- Demo: https://youtube.com/shorts/EQTmY3pivEk?feature=share
+
+
