@@ -15,8 +15,8 @@ export const PROFILE = {
   headLine2:
     "Del retro al bare metal: la curiosidad por el “por qué” detrás de cada click. Hoy: firmware, electrónica y robótica, donde el software toca el mundo real (con debug nocturno ocasional).",
 
-  website: "https://tudominio.es", // cámbialo cuando lo tengas
-  repo: "https://github.com/tuusuario/ipserra", // cámbialo
+  website: "https://ipserra.vercel.app", // cámbialo cuando lo tengas
+  repo: "https://github.com/Ignix98/IPSerra", // cámbialo
   avatarUrl: "/_MG_1198.webp", // pon tu avatar en /public/avatar.webp
 
   shortIntros: [
