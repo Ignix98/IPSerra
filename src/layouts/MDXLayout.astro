@@ -2,30 +2,42 @@
 import ContentTags from "../components/ContentTags.astro";
 import IndexPageLayout from "./IndexPageLayout.astro";
 
-const {frontmatter} = Astro.props;
-const {title, description, image, startDate, tags, canonical} = frontmatter;
+const { frontmatter } = Astro.props;
+const { title, description, image, startDate, tags, canonical } = frontmatter;
 // frontmatter is from MDX metadata for MD pages, we now use content for data now, we use frontmatter for backward compatibility
 ---
 
-<IndexPageLayout title={title} description={description} image={image} subTitle={title} canonicalURL={canonical}>
-  <div class="w-full justify-center flex flex-col">
-    {tags &&
+<IndexPageLayout
+  title={title}
+  description={description}
+  image={image}
+  subTitle={title}
+  canonicalURL={canonical}
+>
+  <div class="w-full min-w-0 flex flex-col items-center justify-center">
+    {tags && (
       <div class="pb-4 mx-auto">
-        <ContentTags tags={tags}/>
-      </div>}
+        <ContentTags tags={tags} />
+      </div>
+    )}
 
-    {
-      startDate &&
+    {startDate && (
       <div class="text-sm text-light my-2 sr-only mx-auto">
         {startDate}
-        <!--  screen reader only date-->
+        <!-- screen reader only date -->
       </div>
-    }
+    )}
 
-    <article class="prose mx-auto dark:prose-invert ">
-      <!--required with tailwind typography plugin + prose to render html-->
-      <slot/>
+    <article
+      class="
+        prose mx-auto dark:prose-invert
+        min-w-0 max-w-none overflow-hidden
+        prose-img:max-w-full prose-img:h-auto prose-img:block
+        prose-img:rounded-2xl
+      "
+    >
+      <!-- required with tailwind typography plugin + prose to render html -->
+      <slot />
     </article>
   </div>
-
 </IndexPageLayout>
