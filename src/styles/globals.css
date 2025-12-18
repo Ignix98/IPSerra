@@ -37,9 +37,9 @@
     --chart-5: 27 87% 67%;
 
     /* ===== Gradient tokens (LIGHT) ===== */
-    --grad-1: 210 40% 98%;
-    --grad-2: 280 85% 96%;
-    --grad-3: 190 85% 95%;
+    --grad-1: 210 40% 98%;  /* base muy clara */
+    --grad-2: 215 45% 96%;  /* azul suave (en vez de púrpura) */
+    --grad-3: 190 80% 95%;  /* cyan suave */
   }
 
   .dark {
