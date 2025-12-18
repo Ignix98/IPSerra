@@ -4,7 +4,6 @@ import IndexPageLayout from "./IndexPageLayout.astro";
 
 const { frontmatter } = Astro.props;
 const { title, description, image, startDate, tags, canonical } = frontmatter;
-// frontmatter is from MDX metadata for MD pages, we now use content for data now, we use frontmatter for backward compatibility
 ---
 
 <IndexPageLayout
@@ -24,20 +23,30 @@ const { title, description, image, startDate, tags, canonical } = frontmatter;
     {startDate && (
       <div class="text-sm text-light my-2 sr-only mx-auto">
         {startDate}
-        <!-- screen reader only date -->
       </div>
     )}
 
     <article
       class="
-        prose mx-auto dark:prose-invert
-        min-w-0 max-w-none overflow-hidden
-        prose-img:max-w-full prose-img:h-auto prose-img:block
+        prose dark:prose-invert
+        mx-auto w-full min-w-0 max-w-none
+        overflow-hidden
+        prose-img:block prose-img:mx-auto
+        prose-img:w-full prose-img:max-w-full
+        prose-img:h-auto
         prose-img:rounded-2xl
+        prose-img:my-6
       "
     >
-      <!-- required with tailwind typography plugin + prose to render html -->
       <slot />
     </article>
   </div>
 </IndexPageLayout>
+
+<style>
+  /* ✅ evita que fotos muy altas “se coman” la pantalla en móvil */
+  article :global(img) {
+    max-height: 70vh;
+    object-fit: contain;
+  }
+</style>
