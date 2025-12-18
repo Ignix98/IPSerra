@@ -13,11 +13,11 @@ projects.sort((a: any, b: any) => {
 ---
 
 <IndexPageLayout
-  title="Projects"
+  title="Proyectos"
   description="Proyectos en los que he trabajado."
-  subTitle="My Projects"
+  subTitle="Mis proyectos"
 >
-  <div class="grid w-full auto-rows-fr grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
+  <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
     {
       projects.map((entity: any) => (
         <ProjectCard
@@ -33,5 +33,4 @@ projects.sort((a: any, b: any) => {
     }
   </div>
 </IndexPageLayout>
-
 
