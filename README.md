@@ -13,9 +13,8 @@ This is my personal website (**IPSerra**) built as a **portfolio + blog**.
 
 **Built with:** Astro, TypeScript, React, Tailwind CSS, and shadcn/ui.
 
-- Live site: **(pon aquí tu URL)**
-- My repository: **(pon aquí tu repo)**
-- Template credits: TechTim (links above)
+- Live site: **https://ipserra.vercel.app**
+- Repository: **https://github.com/Ignix98/IPSerra**
 
 ---
 
