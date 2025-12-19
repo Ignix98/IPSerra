@@ -17,20 +17,19 @@ projects.sort((a: any, b: any) => {
   description="Proyectos en los que he trabajado."
   subTitle="Mis proyectos"
 >
-  <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-    {
-      projects.map((entity: any) => (
-        <ProjectCard
-          key={entity.data.title}
-          href={"/projects/" + entity.slug}
-          heading={entity.data.title}
-          subheading={entity.data.description}
-          altText={entity?.data?.image?.alt}
-          imagePath={entity?.data?.image?.url}
-          dateStart={entity.data.startDate}
-        />
-      ))
-    }
-  </div>
+<div class="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 items-stretch">
+  {projects.map((entity: any) => (
+    <ProjectCard
+      key={entity.slug} // mejor que title
+      href={"/projects/" + entity.slug}
+      heading={entity.data.title}
+      subheading={entity.data.description}
+      altText={entity?.data?.image?.alt}
+      imagePath={entity?.data?.image?.url}
+      dateStart={entity.data.startDate}
+    />
+  ))}
+</div>
+
 </IndexPageLayout>
 

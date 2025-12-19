@@ -15,7 +15,8 @@ const canonical = canonicalURL ? canonicalURL : new URL(Astro.url.pathname, Astr
 const SITE_NAME = "IPSerra";
 
 // Title seguro
-const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;
+const pageTitle = title ?? SITE_NAME;
+
 
 // Cache-buster del favicon (cambia a v=3, v=4 cuando lo actualices)
 const FAVICON_VER = "2";
