@@ -1,6 +1,5 @@
 // Import utilities from `astro:content`
 import { z, defineCollection } from "astro:content";
-
 // Define a `type` and `schema` for each collection
 const projectCollection = defineCollection({
   type: "content",
@@ -44,7 +43,7 @@ const postCollection = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    startDate: z.coerce.date(), // <-- en vez de z.date()
+    startDate: z.date(),
     description: z.string(),
     image: z
       .object({
@@ -52,15 +51,10 @@ const postCollection = defineCollection({
         alt: z.string(),
       })
       .optional(),
-
-    topics: z.array(z.string()).default([]), // <-- AÑADIR
-
-    tags: z.array(z.string()).default([]),   // <-- opcional: mejor default que optional
+    tags: z.array(z.string()).optional(),
     canonical: z.string().optional(),
-    draft: z.boolean().default(false),       // <-- opcional, ya lo usas en posts
   }),
 });
-
 
 // Export a single `collections` object to register your collection(s)
 export const collections = {
