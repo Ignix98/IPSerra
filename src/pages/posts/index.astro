@@ -3,13 +3,19 @@ import ProjectCard from "src/components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
 
-// read mdx files from posts folder as entities
-const posts = await getCollection("posts");
+// Leer posts (opcional: excluir drafts en producción)
+const posts = (await getCollection("posts"))
+  .filter((p) => (import.meta.env.DEV ? true : !p.data.draft));
 
-// sort posts by dateStart DESC
-posts.sort((a: any, b: any) => {
+// Ordenar por startDate DESC
+posts.sort((a, b) => {
   return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
 });
+
+// Lista única de topics (para el select)
+const allTopics = Array.from(
+  new Set(posts.flatMap((p) => p.data.topics ?? []))
+).sort((a, b) => a.localeCompare(b, "es"));
 ---
 
 <IndexPageLayout
@@ -17,21 +23,94 @@ posts.sort((a: any, b: any) => {
   description="Un espacio donde comparto contenido sobre tecnología, videojuegos (también retro) y divulgación en general."
   subTitle="Mi Blog"
 >
-  <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
+  <!-- Controles -->
+  <div class="mb-6 grid gap-6 md:grid-cols-2">
+    <div>
+      <div class="mb-2 text-sm font-semibold tracking-wide">TEMAS</div>
+      <select
+        id="topicFilter"
+        class="w-full rounded-md border px-3 py-2"
+        aria-label="Filtrar por tema"
+      >
+        <option value="">Todos</option>
+        {allTopics.map((topic) => <option value={topic}>{topic}</option>)}
+      </select>
+    </div>
+
+    <div>
+      <div class="mb-2 text-sm font-semibold tracking-wide">BUSCAR</div>
+      <input
+        id="searchInput"
+        class="w-full rounded-md border px-3 py-2"
+        type="search"
+        placeholder="Título..."
+      />
+    </div>
+  </div>
+
+  <p id="noResults" class="hidden mb-4 text-sm opacity-70">
+    No hay posts que coincidan con el filtro.
+  </p>
+
+  <div id="postsGrid" class="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
     {
-      posts.map((entity: any) => (
-        <ProjectCard
-          key={entity.data.title}
-          href={"/posts/" + entity.slug}
-          heading={entity.data.title}
-          subheading={entity.data.description}
-          altText={entity?.data?.image?.alt}
-          imagePath={entity?.data?.image?.url}
-          dateStart={entity.data.startDate}
-        />
-      ))
+      posts.map((entity) => {
+        const titleLower = (entity.data.title ?? "").toLowerCase();
+        const topicsRaw = (entity.data.topics ?? []).map(String).join("|");
+
+        return (
+          <div
+            class="postItem"
+            data-title={titleLower}
+            data-topicsraw={topicsRaw} /* para comparar con el select tal cual */
+          >
+            <ProjectCard
+              href={"/posts/" + entity.slug}
+              heading={entity.data.title}
+              subheading={entity.data.description}
+              altText={entity?.data?.image?.alt}
+              imagePath={entity?.data?.image?.url}
+              dateStart={entity.data.startDate}
+            />
+          </div>
+        );
+      })
     }
   </div>
+
+  <script>
+    const topicFilter = document.getElementById("topicFilter");
+    const searchInput = document.getElementById("searchInput");
+    const grid = document.getElementById("postsGrid");
+    const noResults = document.getElementById("noResults");
+
+    function applyFilters() {
+      const selectedTopic = (topicFilter.value || "").trim();
+      const q = (searchInput.value || "").trim().toLowerCase();
+
+      let shown = 0;
+
+      grid.querySelectorAll(".postItem").forEach((el) => {
+        const title = el.dataset.title || "";
+        const topicsRaw = el.dataset.topicsraw || "";
+
+        const matchesTopic = !selectedTopic || topicsRaw.split("|").includes(selectedTopic);
+        const matchesSearch = !q || title.includes(q);
+
+        const ok = matchesTopic && matchesSearch;
+
+        el.classList.toggle("hidden", !ok);
+        if (ok) shown++;
+      });
+
+      noResults.classList.toggle("hidden", shown !== 0);
+    }
+
+    topicFilter.addEventListener("change", applyFilters);
+    searchInput.addEventListener("input", applyFilters);
+  </script>
 </IndexPageLayout>
+
+
 
 
