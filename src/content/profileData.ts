@@ -28,7 +28,7 @@ export const PROFILE = {
     "🐧 Linux | Debug como deporte de contacto",
   ],
 
-  words: ["Cualquier tecnología suficientemente avanzada es indistinguible de la magia — Arthur C. Clarke","Es difícil decir qué es imposible, porque el sueño de ayer es la esperanza de hoy y la realidad de mañana — Robert H. Goddard"],
+  words: ["Es difícil decir qué es imposible, porque el sueño de ayer es la esperanza de hoy y la realidad de mañana — Robert H. Goddard","Cualquier tecnología suficientemente avanzada es indistinguible de la magia — Arthur C. Clarke",],
 
   skills: [
     "Lenguajes: C (Embedded), C++, Python, Java",
