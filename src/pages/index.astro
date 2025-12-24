@@ -11,13 +11,9 @@ import StudyCard from "../components/sections/StudyCard.astro";
 import CertificateCard from "../components/sections/CertificateCard.astro";
 import { PROFILE } from "../content/profileData";
 import BlogCard from "../components/sections/BlogCard.astro";
+import WordsCard from "../components/sections/WordsCard.astro";
 const SITE = PROFILE.site;
 
-
-const words = PROFILE.words ?? [];
-const randomWord = words.length
-? words[Math.floor(Math.random() * words.length)]
-: "";
 ---
 <BaseLayout title={SITE.SEO.title} description={SITE.SEO.description}>
   <div
@@ -31,17 +27,8 @@ const randomWord = words.length
     class="relative m-auto w-full max-w-6xl overflow-hidden p-2 sm:p-4 md:p-6 flex flex-col gap-4"
   >
     
-
-    <Card>
-      <div class="flex h-full flex-col justify-between">
-        <blockquote class="mt-6 border-l-2 pl-6 italic">
-          “{randomWord}”
-        </blockquote>
-        <p class="mt-2 text-xs"></p>
-      </div>
-    </Card>
-
-
+    <WordsCard words={PROFILE.words ?? []} />
+  
     <Card>
       <IntroCard />
     </Card>
