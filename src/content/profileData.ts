@@ -32,10 +32,11 @@ export const PROFILE = {
 
   skills: [
     "Lenguajes: C (Embedded), C++, Python, Java",
-    "Firmware / Embedded Systems",
-    "Microcontroladores: ARM Cortex-M, ESP32, STM32, Arduino",
+    "Firmware / Sistemas embebidos: bare-metal, FreeRTOS, drivers, I2C/SPI/UART, ADC/DAC, PWM, GPIO",
+    "Plataformas embebidas: STM32, ESP32, BeagleBone Black, Arduino",
     "Sistemas Operativos: Linux (Ubuntu, Debian), Windows",
-    "Git",
+    "Frameworks (Robótica) / simulación: ROS 1/ROS 2, Gazebo",
+    "Control de versiones: Git",
     "Herramientas: KiCad, LTSpice, SolidWorks, MATLAB, Unity",
   ],
 
