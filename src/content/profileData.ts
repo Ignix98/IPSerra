@@ -51,7 +51,7 @@ export const PROFILE = {
     stackoverflow: "",
     devto: "",
     goodreads: "",
-    linkedin: "linkedin.com/in/ignacio-perez-serra/", // si lo tienes
+    linkedin: "linkedin.com/in/ignacio-perez-serra/", 
   },
 
   // Estudios

@@ -1,8 +1,8 @@
 ---
 slug: "simon-bbb"
-summary: "Juego Simón en BeagleBone Black: memoriza la secuencia, repítela y aumenta la dificultad con controles físicos."
-title: "SIMON"
-description: "Juego Simón completo en BeagleBone Black (tipo Raspberry Pi): genera secuencias de luces/sonidos que el jugador debe repetir, con ajuste de velocidad y tiempo de respuesta; desarrollado desde cero a nivel de electrónica y software embebido en C++ con máquina de estados y concurrencia."
+summary: "Juego Simón implementado en BeagleBone Black con botones iluminados, zumbador y ajuste físico de velocidad y tiempo máximo de respuesta."
+title: "SIMON en BeagleBone Black"
+description: "Proyecto de sistemas embebidos desarrollado en C++ sobre BeagleBone Black, una plataforma Linux orientada a control hardware: implementación del juego Simón con gestión de entradas y salidas físicas, máquina de estados, concurrencia e interrupciones GPIO."
 startDate: 2025-01-01
 image:
   {
@@ -10,16 +10,18 @@ image:
     alt: "SIMON en BeagleBone Black",
   }
 tags:
-  ["Sistemas Empotrados", "BeagleBone Black", "GPIO", "Linux", "C++", "Concurrencia", "Hardware"]
+  ["Sistemas Empotrados", "BeagleBone Black", "C++", "GPIO", "Concurrencia", "Linux Embebido", "Electrónica"]
 ---
 
 ![](https://raw.githubusercontent.com/Ignix98/SIMON_BBB_IPERSER/main/doc/simon_3.jpeg)
 
-Proyecto del Máster (MUAII) en la asignatura **Interfaces Físicos y Sistemas Empotrados (2025)**: implementación del juego **Simón** en una **BeagleBone Black** (similar a una Raspberry Pi).
+Proyecto del Máster (MUAII), realizado en la asignatura **Interfaces Físicos y Sistemas Empotrados (2025)**, centrado en la implementación del juego **Simón** sobre una **BeagleBone Black**, una placa de desarrollo para sistemas embebidos que permite ejecutar **Linux embebido** y trabajar directamente con **GPIO** e interacción hardware.
 
-El juego **muestra una secuencia** de **luces y tonos** y el jugador debe **repetirla** correctamente para avanzar; incluye **6 botones arcade iluminados**, **zumbador** y **dos diales** para ajustar **velocidad** y **ventana de respuesta**.  
-Con el **zumbador** se implementaron **sonidos para las pulsaciones**, **cambios de fase**, **pausa**, etc., y en la pantalla de espera (antes de START) se añadieron **melodías** estilo **Zelda/Mario** mientras el jugador inicia la partida.  
-Se desarrolló **desde cero**, reforzando mucho el aprendizaje de **electrónica** y **sistemas embebidos**, programado en **C++** usando **máquina de estados** y **programación concurrente** (hilos + eventos por **interrupciones GPIO**).
+El sistema genera una secuencia de **luces y tonos** que el jugador debe repetir correctamente para avanzar. Para la interacción física se integraron **6 botones arcade iluminados**, un **zumbador** y **dos diales** destinados al ajuste de la **velocidad del juego** y del **tiempo máximo de respuesta**.
 
-- Repo: https://github.com/Ignix98/SIMON_BBB_IPERSER
-- Demo: https://youtube.com/shorts/EQTmY3pivEk?feature=share
+Además de la lógica principal, el zumbador se utilizó para reproducir sonidos asociados a las **pulsaciones**, los **cambios de fase** y la **pausa**, buscando dar a la interacción un toque más **arcade**. También se añadieron melodías inspiradas en **Zelda** y **Mario** mientras el juego está **esperando a que el jugador pulse INICIO**.
+
+A nivel de implementación, el proyecto se desarrolló **desde cero** combinando trabajo de **electrónica** y **software embebido**. El software se programó en **C++** y se estructuró mediante una **máquina de estados**, incorporando **programación concurrente** con **hilos** y gestión de eventos mediante **interrupciones GPIO**. El uso de **Linux embebido** facilitó organizar la lógica del sistema, manejar la concurrencia y coordinar la interacción con el hardware sobre una plataforma real de propósito embebido.
+
+- Código fuente: <a href="https://github.com/Ignix98/SIMON_BBB_IPERSER" target="_blank" rel="noopener noreferrer">GitHub</a>
+- Demostración: <a href="https://youtube.com/shorts/EQTmY3pivEk?feature=share" target="_blank" rel="noopener noreferrer">Vídeo del proyecto</a>

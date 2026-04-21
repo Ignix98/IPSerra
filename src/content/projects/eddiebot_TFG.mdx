@@ -1,32 +1,35 @@
 ---
 slug: "eddiebot-digital-twin"
-title: "Caracterización y validación del modelo dinámico del robot móvil Eddie mediante gemelo digital"
-summary: "Gemelo digital del Eddie Robot: medición del robot real, modelado CAD, URDF y validación en ROS Noetic (Gazebo/RViz)."
-description: "TFG centrado en crear y validar un gemelo digital del robot móvil Eddie: réplica CAD desde medidas reales, generación de URDF (estructura + cinemática) y ajuste del comportamiento en Gazebo para aproximarlo al robot físico; integración de sensores (Lidar y Kinect) y visualización en RViz (Simulación del robot Eddie en Gazebo)."
+title: "Gemelo digital y validación del comportamiento del robot móvil Eddie"
+summary: "TFG centrado en el desarrollo y validación del gemelo digital del robot móvil Eddie a partir del sistema real, mediante modelado CAD, URDF y simulación en ROS Noetic con Gazebo y RViz."
+description: "Trabajo de Fin de Grado orientado a crear y validar el gemelo digital del robot móvil Eddie. El proyecto abarca la toma de medidas del robot real, su modelado CAD, la generación del modelo URDF con su estructura y cinemática, el ajuste del comportamiento en Gazebo para aproximarlo al sistema físico y la integración de sensores como Lidar y Kinect para su visualización y análisis en RViz."
 startDate: 2024-01-01
 image:
   url: "https://raw.githubusercontent.com/Ignix98/eddiebot_ws/main/doc/figs_simulacion/movGazebo.jpg"
   alt: "Simulación del robot Eddie en Gazebo"
-tags: ["Robótica", "ROS 1", "Noetic", "Gazebo", "RViz", "URDF", "SolidWorks", "Linux", "C++", "Python", "bash", "Diseño Mecánico", "Impresión 3D"]
+tags: ["Robótica", "Gemelo digital", "ROS Noetic", "Gazebo", "RViz", "URDF", "SolidWorks", "Diseño mecánico", "C++", "Python", "Linux"]
 ---
 
-![](https://raw.githubusercontent.com/Ignix98/eddiebot_ws/main/doc/figs_simulacion/movGazebo.jpg)
+![Simulación del robot Eddie en Gazebo](https://raw.githubusercontent.com/Ignix98/eddiebot_ws/main/doc/figs_simulacion/movGazebo.jpg)
 
-TFG centrado en la **caracterización y validación** del comportamiento de un robot móvil mediante la creación de su **gemelo digital**. El trabajo parte del **robot físico** (Eddie) y construye una réplica digital precisa para poder **simular**, **ajustar** y **comparar** su movilidad en un entorno controlado.
+Trabajo de Fin de Grado centrado en la **caracterización y validación del comportamiento** de un robot móvil mediante la creación de su **gemelo digital**. El proyecto parte del **robot físico Eddie** y desarrolla una réplica digital con suficiente fidelidad como para **simular su movimiento**, **ajustar su comportamiento** y **comparar el modelo con el sistema real** en un entorno controlado.
 
-El flujo de desarrollo fue:
+El desarrollo del proyecto se estructuró en varias fases:
 
-- **Toma de medidas del robot real** y creación de una **réplica detallada en CAD (SolidWorks)**.
-- Generación del **modelo URDF** describiendo **estructura física y cinemática**, base para ROS.
-- **Simulación en Gazebo** y **ajuste del comportamiento** del modelo digital para aproximarlo al robot real.
-- Integración de sensores en el gemelo digital (**Lidar** y **Kinect**) para mejorar percepción y navegación en simulación.
-- **Visualización y depuración en RViz** para validar estados, frames y señales relevantes.
+- **Medición del robot real** y creación de una **réplica CAD en SolidWorks**, utilizada como base geométrica del modelo.
+- Generación del **modelo URDF**, definiendo la **estructura física del robot**, la relación entre sus componentes y su **cinemática** dentro del ecosistema ROS.
+- **Integración y simulación en Gazebo**, ajustando parámetros del modelo para aproximar su comportamiento al del robot físico.
+- Incorporación de sensores en el gemelo digital, concretamente **Lidar** y **Kinect**, para trabajar percepción y navegación en simulación.
+- **Visualización y depuración en RViz**, comprobando estados del robot, sistemas de referencia (*frames*) y señales relevantes para la validación del conjunto.
 
-Como complemento hardware, se diseñó una **carcasa/soporte impresa en 3D (Bambulab)** para alojar una **pantalla** en el robot real, facilitando la **visualización de datos** y la interacción en aplicaciones prácticas.
+Como parte complementaria del trabajo, también se diseñó una **carcasa o soporte impreso en 3D** para integrar una **pantalla en el robot real**, con el objetivo de facilitar la **visualización de información** y la interacción en posibles aplicaciones prácticas.
 
-- Repo: https://github.com/Ignix98/eddiebot_ws
-- Demo: https://youtu.be/RJX0aIKWb_4
-- TFG (PDF): https://github.com/Ignix98/eddiebot_ws/blob/main/doc/TFG_IGPESE.pdf
+### Recursos del proyecto
 
-Imagen del robot real:
-![](https://raw.githubusercontent.com/Ignix98/eddiebot_ws/main/doc/figs_robot_real/eddiebot_compl_retoc.jpg)
+- <a href="https://github.com/Ignix98/eddiebot_ws" target="_blank" rel="noopener noreferrer">Código fuente del proyecto EddieBot (GitHub)</a>
+- <a href="https://youtu.be/RJX0aIKWb_4" target="_blank" rel="noopener noreferrer">Vídeo de demostración del gemelo digital en funcionamiento</a>
+- <a href="https://github.com/Ignix98/eddiebot_ws/blob/main/doc/TFG_IGPESE.pdf" target="_blank" rel="noopener noreferrer">Memoria completa del TFG en PDF</a>
+
+### Robot físico
+
+![Robot móvil Eddie real](https://raw.githubusercontent.com/Ignix98/eddiebot_ws/main/doc/figs_robot_real/eddiebot_compl_retoc.jpg)
