@@ -31,13 +31,14 @@ export const PROFILE = {
   words: ["Es difícil decir qué es imposible, porque el sueño de ayer es la esperanza de hoy y la realidad de mañana — Robert H. Goddard","Cualquier tecnología suficientemente avanzada es indistinguible de la magia — Arthur C. Clarke",],
 
   skills: [
-    "Lenguajes: C (Embedded), C++, Python, Java",
-    "Firmware / Sistemas embebidos: bare-metal, FreeRTOS, drivers, I2C/SPI/UART, ADC/DAC, PWM, GPIO",
-    "Plataformas embebidas: STM32, ESP32, BeagleBone Black, Arduino",
-    "Sistemas Operativos: Linux (Ubuntu, Debian), Windows",
-    "Frameworks (Robótica) / simulación: ROS 1/ROS 2, Gazebo",
-    "Control de versiones: Git",
-    "Herramientas: KiCad, LTSpice, SolidWorks, MATLAB, Unity",
+    "Programación: C / Embedded C, C++, C#, Python, Java, MATLAB/Octave y shell scripting.",
+    "Sistemas embebidos: bare-metal, FreeRTOS básico, Embedded Linux, drivers, GPIO, PWM, ADC/DAC, I2C, SPI, UART, CAN y RS-485.",
+    "Plataformas: STM32, ESP32, BeagleBone Black, Raspberry Pi, Arduino e Intel 8051.",
+    "Comunicaciones: TCP/IP, UDP, MQTT, Ethernet 10G, USB, PCIe, Wi-Fi, 6G-SDI, 3G-SDI, DisplayPort y HDMI.",
+    "Testing y verificación: LabVIEW, TestStand, SDKs, test benches, iperf3, ethtool, FFmpeg, multímetro, osciloscopio y análisis de señales.",
+    "Robótica y simulación: ROS 1/ROS 2, Gazebo, Unity y MATLAB.",
+    "Diseño y prototipado: KiCad, LTspice, SolidWorks e impresión 3D.",
+    "Herramientas y SO: Git, Linux y Windows.",
   ],
 
   links: {
@@ -63,7 +64,7 @@ export const PROFILE = {
     },
     {
       title:
-        "Ingeniería Electrónica Industrial (2019–2024)",
+        "Ingeniería Electrónica Industrial (2019-2024)",
       level: "Grado",
       institution: "Universitat de València (UV)",
     },
