@@ -79,9 +79,15 @@ export const PROFILE = {
   certificates: [
     {
       title:
-        "(MCU1) Learn bare metal driver development using Embedded C (STM32: GPIO, I2C, SPI, USART) - En proceso",
-      level: "Curso ",
-      institution: "Udemy",
+        "nRF Connect SDK Fundamentals (Zephyr RTOS, Devicetree, GPIO, UART e I2C)",
+      level: "Curso · Por comenzar",
+      institution: "Nordic Semiconductor Developer Academy · 8 - 10 horas",
+    },
+    {
+      title:
+        "(MCU1) Learn bare metal driver development using Embedded C (STM32: GPIO, I2C, SPI, USART)",
+      level: "Curso · En proceso",
+      institution: "Udemy · 28,5 horas",
     },
     {
       title: "Self Driving and ROS - Learn Doing! Odometry & Control",
