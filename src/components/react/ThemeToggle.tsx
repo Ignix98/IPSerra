@@ -4,7 +4,7 @@ import { Moon, Sun } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-export function ModeToggle() {
+export function ModeToggle({ label = "Cambiar tema" }: { label?: string }) {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export function ModeToggle() {
       ) : (
         <Moon className="h-[1.2rem] w-[1.2rem] transition-all rotate-0 scale-100" />
       )}
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{label}</span>
     </Button>
   );
 }

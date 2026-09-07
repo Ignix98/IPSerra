@@ -1,14 +1,17 @@
 ---
-import { getCollection } from "astro:content";
+import { getLocalizedCollection, getEntryPath } from "../../i18n/content";
+import { getLanguage, getUI, localizePath, locales } from "../../i18n/utils";
+const language = getLanguage(Astro.url);
+const t = getUI(language);
 import Card from '../Card.astro'
 import { Button } from '../ui/button'
 import { formateLocalDate } from "../../lib/utils";
 
 
-let posts = await getCollection('posts');
+let posts = await getLocalizedCollection("posts", language);
 
 posts = posts.sort((a, b) => {
-  return new Date(b.data.startDate) - new Date(a.data.startDate);
+  return b.data.startDate.getTime() - a.data.startDate.getTime();
 });
 posts = posts.slice(0, 2);
 ---
@@ -19,7 +22,7 @@ posts = posts.slice(0, 2);
     posts.map((project) => (
       <div>
         <h3 class="text-lg font-semibold text-primary">
-          <a href={`/posts/${project.slug}`} class="hover:underline line-clamp-2">
+          <a href={getEntryPath(project)} class="hover:underline line-clamp-2">
             {project.data.title}
           </a>
         </h3>
@@ -27,13 +30,13 @@ posts = posts.slice(0, 2);
           {project.data.description}
         </p>
         <p class="text-sm text-gray-600">
-          {formateLocalDate(project.data.startDate)} {project.data?.endDate ? '- ' + formateLocalDate(project.data.endDate) : ''}
+          {formateLocalDate(project.data.startDate, undefined, locales[language])}
         </p>
       </div>
     ))
   }
-  <a href="/posts">
-    <Button variant="link" className="pl-0"> Ver más</Button>
+  <a href={localizePath("/posts", language)}>
+    <Button variant="link" className="pl-0">{t.more}</Button>
   </a>
 </div>
 

@@ -23,7 +23,7 @@ books = books.slice(0, 5);
         {books.map(
           (book) => (
             <li>
-              <a href={`/books/${book.slug}`} class=" hover:font-bold hover:underline">{book.data.title}</a>
+              <a href={`/books/${book.id}`} class=" hover:font-bold hover:underline">{book.data.title}</a>
               <span class="text-xs font-thin italic">- {book.data.author}</span>
             </li>
           )

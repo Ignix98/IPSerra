@@ -1,23 +1,22 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-
-import { buttonVariants } from '../components/ui/button'
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { buttonVariants } from "../components/ui/button";
+import { getUI } from "../i18n/utils";
+const es = getUI("es");
+const en = getUI("en");
 ---
-
-<BaseLayout
-  title="404 - Not Found"
-  description="404 Error — this page was not found"
->
-  <main class="flex h-[80vh] flex-auto">
-    <div class="flex flex-col items-center justify-center px-8">
-      <p class="text-sm text-muted-foreground">404</p>
-      <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl">
-        Page not found
-      </h1>
-      <p class="mb-4 leading-7 [&:not(:first-child)]:mt-6">
-        Sorry, we couldn't find the page you're looking for.
-      </p>
-      <a href="/" rel="noreferrer" class={buttonVariants()}> Go back home</a>
-    </div>
+<BaseLayout title={"404 — " + es.notFound + " / " + en.notFound} noindex>
+  <main class="flex min-h-[80vh] w-full max-w-screen-lg flex-col items-center justify-center gap-8 px-6 py-12 text-center">
+    <h1 class="text-4xl font-extrabold">404</h1>
+    <section lang="es" aria-labelledby="error-es">
+      <h2 id="error-es" class="text-2xl font-bold">{es.notFound}</h2>
+      <p class="my-4 text-muted-foreground">{es.notFoundDescription}</p>
+      <a href="/" hreflang="es" data-language="es" class={buttonVariants()}>{es.backHome} · ES</a>
+    </section>
+    <section lang="en" aria-labelledby="error-en">
+      <h2 id="error-en" class="text-2xl font-bold">{en.notFound}</h2>
+      <p class="my-4 text-muted-foreground">{en.notFoundDescription}</p>
+      <a href="/en/" hreflang="en" data-language="en" class={buttonVariants()}>{en.backHome} · EN</a>
+    </section>
   </main>
 </BaseLayout>

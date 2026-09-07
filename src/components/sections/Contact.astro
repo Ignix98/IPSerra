@@ -21,7 +21,7 @@ console.log(books);
         {books.map(
           (book) => (
             <li>
-              <a href={`/books/${book.data.slug}`} class="hover:font-bold underline">{book.data.title}</a>
+              <a href={`/books/${book.id}`} class="hover:font-bold underline">{book.data.title}</a>
               <span class="text-sm font-thin italic">- {book.data.author}</span>
             </li>
           )

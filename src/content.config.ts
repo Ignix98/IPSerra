@@ -1,9 +1,13 @@
-// Import utilities from `astro:content`
-import { z, defineCollection } from "astro:content";
-// Define a `type` and `schema` for each collection
+// Configure local Markdown and MDX collections with the Content Layer.
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
+// Define a loader and schema for each collection
 const projectCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/projects" }),
   schema: z.object({
+    lang: z.enum(["es", "en"]),
+    translationKey: z.string().min(1),
     title: z.string(),
     summary: z.string().optional(),
     startDate: z.date(),
@@ -19,8 +23,10 @@ const projectCollection = defineCollection({
 });
 
 const experienceCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/experiences" }),
   schema: z.object({
+    lang: z.enum(["es", "en"]),
+    translationKey: z.string().min(1),
     title: z.string(),
     startDate: z.date(),
     endDate: z.date().optional(),
@@ -30,7 +36,7 @@ const experienceCollection = defineCollection({
 });
 
 const bookCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/books" }),
   schema: z.object({
     title: z.string(),
     readYear: z.number(),
@@ -40,8 +46,10 @@ const bookCollection = defineCollection({
 });
 
 const postCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/posts" }),
   schema: z.object({
+    lang: z.enum(["es", "en"]),
+    translationKey: z.string().min(1),
     title: z.string(),
     startDate: z.date(),
     description: z.string(),

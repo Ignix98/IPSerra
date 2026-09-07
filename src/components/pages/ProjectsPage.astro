@@ -1,0 +1,38 @@
+---
+import ProjectCard from "src/components/ProjectCard.astro";
+import { getLocalizedCollection, getEntryPath } from "../../i18n/content";
+import { getLanguage, getUI } from "../../i18n/utils";
+const language = getLanguage(Astro.url);
+const t = getUI(language);
+import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
+
+// read mdx files from projects folder as entities
+const projects = await getLocalizedCollection("projects", language);
+
+// sort projects by dateStart DESC
+projects.sort((a: any, b: any) => {
+  return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
+});
+---
+
+<IndexPageLayout
+  title={t.projects}
+  description={t.projectsDescription}
+  subTitle={t.projectsTitle}
+>
+<div class="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 items-stretch">
+  {projects.map((entity: any) => (
+    <ProjectCard
+      key={entity.id} // mejor que title
+      href={getEntryPath(entity)}
+      heading={entity.data.title}
+      subheading={entity.data.description}
+      altText={entity?.data?.image?.alt}
+      imagePath={entity?.data?.image?.url}
+      dateStart={entity.data.startDate}
+    />
+  ))}
+</div>
+
+</IndexPageLayout>
+

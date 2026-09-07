@@ -1,7 +1,10 @@
 ---
 import Card from '../Card.astro'
 import { Badge } from '../ui/badge'
-import { PROFILE } from "../../content/profileData";
+import { getProfile } from "../../content/profileData";
+import { getLanguage } from "../../i18n/utils";
+const language = getLanguage(Astro.url);
+const PROFILE = getProfile(language);
 ---
 
 <div class="mt-2 flex w-full flex-col gap-3">

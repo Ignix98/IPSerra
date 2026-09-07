@@ -1,0 +1,29 @@
+---
+lang: en
+translationKey: "simon-bbb"
+slug: "en/simon-bbb"
+summary: "Simon game implemented on BeagleBone Black with illuminated buttons, a buzzer and physical controls for speed and maximum response time."
+title: "SIMON on BeagleBone Black"
+description: "Embedded systems project developed in C++ on BeagleBone Black, a Linux platform for hardware control: implementation of the Simon game with physical inputs and outputs, a state machine, concurrency and GPIO interrupts."
+startDate: 2025-01-01
+image:
+  {
+    url: "https://raw.githubusercontent.com/Ignix98/SIMON_BBB_IPERSER/main/doc/simon_3.jpeg",
+    alt: "SIMON on BeagleBone Black",
+  }
+tags:
+  ["Sistemas Empotrados", "BeagleBone Black", "C++", "GPIO", "Concurrencia", "Linux Embebido", "Electrónica"]
+---
+
+![SIMON on BeagleBone Black](https://raw.githubusercontent.com/Ignix98/SIMON_BBB_IPERSER/main/doc/simon_3.jpeg)
+
+Master's project (MUAII), developed for the **Physical Interfaces and Embedded Systems course (2025)**, focused on implementing the **Simon** game on a **BeagleBone Black**, a development board that runs **embedded Linux** and provides direct access to **GPIO** and hardware interaction.
+
+The system generates a sequence of **lights and tones** that the player must repeat correctly to progress. The physical interface includes **six illuminated arcade buttons**, a **buzzer** and **two dials** for adjusting the **game speed** and **maximum response time**.
+
+In addition to the main game logic, the buzzer produces sounds for **button presses**, **phase changes** and **pausing**, giving the game a more **arcade-like** feel. Melodies inspired by **Zelda** and **Mario** also play while the game is **waiting for the player to press START**.
+
+The project was developed **from scratch**, combining **electronics** and **embedded software**. The software was written in **C++** and structured around a **state machine**, incorporating **concurrent programming** with **threads** and event handling through **GPIO interrupts**. **Embedded Linux** made it possible to organise the system logic, manage concurrency and coordinate interactions with the hardware on a real, general-purpose platform.
+
+- Source code: <a href="https://github.com/Ignix98/SIMON_BBB_IPERSER" target="_blank" rel="noopener noreferrer">GitHub</a>
+- Demonstration: <a href="https://youtube.com/shorts/EQTmY3pivEk?feature=share" target="_blank" rel="noopener noreferrer">Project video</a>

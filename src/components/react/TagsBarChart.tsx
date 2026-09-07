@@ -9,33 +9,22 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-export const description = "An interactive bar chart";
-
-const chartConfig = {
-  count: {
-    label: "Count",
-    color: "hsl(var(--chart-1))",
-  },
-} satisfies ChartConfig;
-
 export function Component({
   tags,
+  countLabel,
+  chartLabel,
 }: {
+  countLabel: string;
+  chartLabel: string;
   tags: {
     value: string;
     count: number;
   }[];
 }) {
-  const [activeChart, setActiveChart] =
-    React.useState<keyof typeof chartConfig>("count");
-
-  const total = React.useMemo(
-    () => tags.map((tag) => tag.count).reduce((a, b) => a + b, 0),
-    [],
-  );
+  const chartConfig = { count: { label: countLabel, color: "hsl(var(--chart-1))" } } satisfies ChartConfig;
 
   return (
-    <Card className={"min-w-[375px] w-full"}>
+    <Card role="region" aria-label={chartLabel} className={"min-w-[375px] w-full"}>
       <CardContent className="px-2 sm:p-6">
         <ChartContainer
           config={chartConfig}
@@ -71,7 +60,7 @@ export function Component({
                 />
               }
             />
-            <Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} />
+            <Bar dataKey="count" fill="var(--color-count)" />
           </BarChart>
         </ChartContainer>
       </CardContent>

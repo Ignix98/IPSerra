@@ -1,0 +1,50 @@
+---
+import { getLanguage, getUI } from "../i18n/utils";
+import { getAlternatePaths } from "../i18n/content";
+import { languages } from "../i18n/ui";
+const language = getLanguage(Astro.url);
+const t = getUI(language);
+const alternates = await getAlternatePaths(Astro.url);
+const paired = Object.keys(alternates).length > 0;
+const notFound = /^\/404(?:\.html)?$/.test(Astro.url.pathname);
+const destinations = notFound ? { es: "/", en: "/en/" } : paired ? alternates : { es: Astro.url.pathname, en: "/en/" };
+---
+<div class="inline-flex h-[34px] shrink-0 items-center rounded-md border px-1 py-1 text-xs" role="group" aria-label={t.language}>
+  {languages.map((target, index) => <>
+    {index > 0 && <span aria-hidden="true" class="text-muted-foreground">|</span>}
+    {destinations[target] ? (
+      <a href={destinations[target]} lang={target} hreflang={target} data-language={target}
+        title={!paired && target === "en" ? t.englishHome : undefined}
+        aria-label={!paired && target === "en" ? t.englishHome : target === "en" ? "English" : "Español"}
+        aria-current={!notFound && language === target ? "true" : undefined}
+        class:list={["inline-flex w-7 shrink-0 items-center justify-center rounded-full px-1 py-0.5 transition-colors duration-200 ease-in-out motion-reduce:transition-none hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring", language === target ? "bg-accent font-bold text-foreground" : "text-muted-foreground"]}>
+        {target.toUpperCase()}
+      </a>
+    ) : (
+      <span aria-disabled="true" title={t.unavailable} class="inline-flex w-7 shrink-0 items-center justify-center rounded-full px-1 py-0.5 text-muted-foreground opacity-50">{target.toUpperCase()}</span>
+    )}
+  </>)}
+</div>
+<script>
+  import { getLanguage, isLocalizedPath, localizePath } from "../i18n/utils";
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest<HTMLAnchorElement>("a[data-language]") : null;
+    const language = link?.dataset.language;
+    if (language !== "es" && language !== "en") return;
+    try { localStorage.setItem("preferredLanguage", language); } catch { /* Optional storage. */ }
+  });
+  function restoreHomeLink() {
+    try {
+      // Explicit translated URLs always win; never redirect based on storage.
+      if (isLocalizedPath(window.location.pathname)) {
+        localStorage.setItem("preferredLanguage", getLanguage(new URL(window.location.href)));
+        return;
+      }
+      const language = localStorage.getItem("preferredLanguage");
+      const homeLink = document.querySelector<HTMLAnchorElement>("[data-home-link]");
+      if (homeLink && (language === "es" || language === "en")) homeLink.href = localizePath("/", language);
+    } catch { /* Regular links work without storage. */ }
+  }
+  document.addEventListener("astro:page-load", restoreHomeLink);
+  restoreHomeLink();
+</script>

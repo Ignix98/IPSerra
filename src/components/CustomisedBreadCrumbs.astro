@@ -1,22 +1,31 @@
 ---
 import { Breadcrumbs } from "astro-breadcrumbs";
 import "astro-breadcrumbs/breadcrumbs.css";
+import { getLanguage, getUI, localizePath, withoutLanguage } from "../i18n/utils";
+const language = getLanguage(Astro.url);
+const t = getUI(language);
+const route = withoutLanguage(Astro.url.pathname);
+const section = route.match(/^\/(projects|experiences|posts|tags)(?:\/|$)/)?.[1];
+const { currentTitle } = Astro.props;
+const sectionTitle = section === "projects" ? t.projects : section === "posts" ? t.blog : section === "tags" ? t.tags : t.experiences;
+const detail = section && route !== "/" + section;
 ---
-
-
-<Breadcrumbs separatorAriaHidden={false} ariaLabel="breadcrumbs">
-  <svg
-    slot="separator"
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <polyline points="9 18 15 12 9 6"></polyline>
-  </svg>
-</Breadcrumbs>
+{section ? (
+  <nav aria-label={t.breadcrumbs}>
+    <ol class="flex flex-wrap items-center gap-2 text-sm">
+      <li><a href={localizePath("/", language)} class="hover:underline">{t.home}</a></li>
+      <li aria-hidden="true">›</li>
+      {detail ? <>
+        <li><a href={localizePath("/" + section, language)} class="hover:underline">{sectionTitle}</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page" class="text-muted-foreground">{currentTitle}</li>
+      </> : <li aria-current="page" class="text-muted-foreground">{sectionTitle}</li>}
+    </ol>
+  </nav>
+) : (
+  <Breadcrumbs separatorAriaHidden={false} ariaLabel="breadcrumbs">
+    <svg slot="separator" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </Breadcrumbs>
+)}

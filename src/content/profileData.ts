@@ -1,3 +1,5 @@
+import type { Language } from "../i18n/ui";
+
 export const PROFILE = {
   site: {
     SEO: {
@@ -52,7 +54,7 @@ export const PROFILE = {
     stackoverflow: "",
     devto: "",
     goodreads: "",
-    linkedin: "linkedin.com/in/ignacio-perez-serra/", 
+    linkedin: "linkedin.com/in/ignacio-perez-serra/",
   },
 
   // Estudios
@@ -103,3 +105,62 @@ export const PROFILE = {
   ],
 
 };
+
+
+// Preserve PROFILE for pages not yet translated.
+const translations = {
+  es: {
+    site: PROFILE.site, language: PROFILE.language, headLine: PROFILE.headLine,
+    headLine2: PROFILE.headLine2, shortIntros: PROFILE.shortIntros, words: PROFILE.words,
+    skills: PROFILE.skills, studies: PROFILE.studies, certificates: PROFILE.certificates,
+  },
+  en: {
+    ...{
+  "site": {
+    "SEO": {
+      "title": "IPSerra - Technology, Development and Firmware",
+      "description": "Technology portfolio and blog by Ignacio Pérez Serra (ipserra). Projects, guides and articles on development, systems and embedded firmware."
+    }
+  },
+  "language": "en-GB",
+  "headLine": "",
+  "headLine2": "From retro to bare metal: curiosity about the ‘why’ behind every click. These days: firmware, electronics and robotics, where software touches the real world (with the occasional late-night debugging session).",
+  "shortIntros": [
+    "💻 Programmer and engineer | Firmware and embedded systems",
+    "🕹️ Retro computing + video games: from 8/16-bit to understanding hardware from the inside",
+    "⚙️ Interested in architecture and low-level systems: buses, timing, interrupts and registers",
+    "🔧 From ‘why won't it boot?’ to ‘oh, it was the pull-up / clock / reset’",
+    "🤖 Robots and tinkering: when software drives motors and reads sensors",
+    "🐧 Linux | Debugging as a contact sport"
+  ],
+  "words": [
+    "It is difficult to say what is impossible, for the dream of yesterday is the hope of today and the reality of tomorrow — Robert H. Goddard",
+    "Any sufficiently advanced technology is indistinguishable from magic — Arthur C. Clarke"
+  ],
+  "skills": [
+    "Programming: C / Embedded C, C++, C#, Python, Java, MATLAB/Octave and shell scripting.",
+    "Embedded systems: bare-metal, basic FreeRTOS, Embedded Linux, drivers, GPIO, PWM, ADC/DAC, I2C, SPI, UART, CAN and RS-485.",
+    "Platforms: STM32, ESP32, BeagleBone Black, Raspberry Pi, Arduino and Intel 8051.",
+    "Communications: TCP/IP, UDP, MQTT, Ethernet 10G, USB, PCIe, Wi-Fi, 6G-SDI, 3G-SDI, DisplayPort and HDMI.",
+    "Testing and verification: LabVIEW, TestStand, SDKs, test benches, iperf3, ethtool, FFmpeg, multimeter, oscilloscope and signal analysis.",
+    "Robotics and simulation: ROS 1/ROS 2, Gazebo, Unity and MATLAB.",
+    "Design and prototyping: KiCad, LTspice, SolidWorks and 3D printing.",
+    "Tools and operating systems: Git, Linux and Windows."
+  ]
+},
+    studies: [
+      { ...PROFILE.studies[0], title: "Automation and Industrial Computing (2024–2026)", level: "Master's degree" },
+      { ...PROFILE.studies[1], title: "Industrial Electronic Engineering (2019–2024)", level: "Bachelor's degree" },
+      { ...PROFILE.studies[2], title: "Multiplatform Application Development (2017–2019)", level: "Higher vocational qualification" },
+    ],
+    certificates: [
+      { ...PROFILE.certificates[0], title: "nRF Connect SDK Fundamentals (Zephyr RTOS, Devicetree, GPIO, UART and I2C)", level: "Course · Not started", institution: "Nordic Semiconductor Developer Academy · 8–10 hours" },
+      { ...PROFILE.certificates[1], level: "Course · In progress", institution: "Udemy · 28.5 hours" },
+      { ...PROFILE.certificates[2], level: "Course", institution: "Udemy · 19.5 hours · Instructor: Antonio Brandi" },
+      { ...PROFILE.certificates[3], title: "Experimentation with electronic equipment for low-level measurements", level: "University extension course", institution: "Universitat de València (UV) · July 2024" },
+    ],
+  },
+};
+export function getProfile(language: Language) {
+  return { ...PROFILE, ...translations[language] };
+}

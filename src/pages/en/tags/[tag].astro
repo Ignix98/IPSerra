@@ -1,0 +1,9 @@
+---
+import { getTagDetailPaths } from "../../../i18n/content";
+import TagPage from "../../../components/pages/TagPage.astro";
+export async function getStaticPaths() {
+  return getTagDetailPaths("en");
+}
+const { tag, items } = Astro.props;
+---
+<TagPage tag={tag} items={items} />

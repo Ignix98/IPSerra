@@ -1,0 +1,34 @@
+---
+import { getTagGroups } from "../../i18n/content";
+import { getLanguage, getUI } from "../../i18n/utils";
+import { getTagPath, translateTag } from "../../i18n/tags";
+import TagsBarChart from "../react/TagsBarChart";
+import WordCloud from "../react/WordCloud";
+import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
+
+const language = getLanguage(Astro.url);
+const t = getUI(language);
+const groups = await getTagGroups(language);
+const tags = Array.from(groups, ([id, items]) => ({
+  id, value: translateTag(id, language), count: items.length, href: getTagPath(id, language),
+})).sort((a, b) => b.count - a.count || a.id.localeCompare(b.id));
+---
+<IndexPageLayout title={t.tags} description={t.tagsDescription} subTitle={t.tags}>
+  <div class="flex w-full min-w-0 flex-col gap-4">
+    <div class="overflow-auto">
+      <h3 class="mb-2 text-lg font-bold">{t.tagsUsage}</h3>
+      <TagsBarChart tags={tags.slice(0, 10)} countLabel={t.count} chartLabel={t.tagsUsage} client:load />
+    </div>
+    <div>
+      <h3 class="mb-2 text-lg font-bold">{t.wordCloud}</h3>
+      <WordCloud words={tags} client:load />
+      <p class="mt-6 border-l-2 pl-6 text-xs font-light italic">{t.tagInstructions}</p>
+    </div>
+    <div class="sr-only">
+      <h3>{t.tagsByFrequency}</h3>
+      <ul>
+        {tags.map(tag => <li><a href={tag.href}>{tag.value} ({tag.count})</a></li>)}
+      </ul>
+    </div>
+  </div>
+</IndexPageLayout>

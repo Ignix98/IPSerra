@@ -1,0 +1,14 @@
+---
+import { render } from "astro:content";
+import { getDetailPaths } from "../../../i18n/content";
+import MDXLayout from "../../../layouts/MDXLayout.astro";
+
+export async function getStaticPaths() {
+  return getDetailPaths("projects", "en");
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<MDXLayout frontmatter={entry.data}>
+  <Content />
+</MDXLayout>

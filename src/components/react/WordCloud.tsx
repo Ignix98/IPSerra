@@ -1,29 +1,25 @@
 import { TagCloud } from "react-tagcloud";
 
-const SimpleCloud = ({
-  words,
-}: {
-  words: { value: string; count: number }[];
-}) => {
-  const handleRedirect = (tag: { value: string }) => {
-    // Redirect using window.location
-    window.location.href = `/tags/${tag.value}`;
-  };
+type Word = { id: string; value: string; count: number; href: string };
 
+export default function WordCloud({ words }: { words: Word[] }) {
+  const byId = new Map(words.map(word => [word.id, word]));
   return (
     <TagCloud
-      className={"hover:cursor-pointer"}
       minSize={12}
       maxSize={35}
-      tags={words}
-      shuffle={true}
-      colorOptions={{
-        luminosity: "bright",
-        hue: "orange",
+      tags={words.map(word => ({ value: word.id, count: word.count }))}
+      shuffle={false}
+      renderer={(tag, size) => {
+        const word = byId.get(tag.value);
+        return word ? (
+          <a key={word.id} href={word.href}
+            style={{ fontSize: size }}
+            className="m-2 inline-block text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            {word.value}
+          </a>
+        ) : <></>;
       }}
-      onClick={handleRedirect}
     />
   );
-};
-
-export default SimpleCloud;
+}

@@ -1,8 +1,13 @@
 ---
-import { getAndGroupUniqueTags } from "../../lib/utils";
-import { PROFILE } from "../../content/profileData";
+import { getTagGroups } from "../../i18n/content";
+import { getTagPath } from "../../i18n/tags";
+import { getProfile } from "../../content/profileData";
+import { getLanguage, getUI, localizePath } from "../../i18n/utils";
+const language = getLanguage(Astro.url);
+const t = getUI(language);
+const PROFILE = getProfile(language);
 
-const tagsMap = await getAndGroupUniqueTags();
+const tagsMap = await getTagGroups(language);
 
 const skills = PROFILE.skills;
 ---
@@ -18,14 +23,14 @@ const skills = PROFILE.skills;
 
   <hr />
 
-  <p class="text-sm font-light">Uso las siguientes tecnologías:</p>
+  <p class="text-sm font-light">{t.technologies}</p>
   <ul class="list-outside list-disc pl-8">
     {
       skills.map((skill) => {
         if (tagsMap.has(skill)) {
           return (
             <li>
-              <a href={`/tags/${skill}`} class="hover:font-bold">
+              <a href={getTagPath(skill, language)} class="hover:font-bold">
                 {skill}
               </a>
             </li>
@@ -42,10 +47,10 @@ const skills = PROFILE.skills;
   </ul>
 
   <p class="text-sm font-light">
-    Más sobre mis <a href="/projects" class="underline hover:font-bold"
-      >Proyectos</a
-    > y mi <a href="/experiences" class="underline hover:font-bold"
-      >Experiencia</a
+    {t.moreAbout} <a href={localizePath("/projects", language)} class="underline hover:font-bold"
+      >{t.projects}</a
+    > {t.andMy} <a href={localizePath("/experiences", language)} class="underline hover:font-bold"
+      >{t.experience}</a
     >.
   </p>
 </div>

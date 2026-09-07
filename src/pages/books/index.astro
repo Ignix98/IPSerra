@@ -21,12 +21,12 @@ books.sort((a, b) => {
     <TableBody>
       {
         books.map((entry) => (
-          <TableRow key={entry.slug}>
+          <TableRow key={entry.id}>
             <TableCell className="font-medium ">
               <div class="flex flex-col gap-1 min-w-20">
                 <a
-                  href={'/books/' + entry.slug ?? ''}
-                  class={`font-semibold hover:font-extrabold ${entry?.slug ? 'text-primary' : 'text-foreground'}`}
+                  href={'/books/' + entry.id ?? ''}
+                  class={`font-semibold hover:font-extrabold ${entry?.id ? 'text-primary' : 'text-foreground'}`}
                 >
                   {entry.data.title}
                 </a>
@@ -45,7 +45,7 @@ books.sort((a, b) => {
               </div>
             </TableCell>
             <TableCell>
-              <a href={'/books/' + entry.slug}>
+              <a href={'/books/' + entry.id}>
                 <ArrowRight/>
               </a>
             </TableCell>

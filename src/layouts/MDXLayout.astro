@@ -1,6 +1,9 @@
 ---
 import ContentTags from "../components/ContentTags.astro";
 import IndexPageLayout from "./IndexPageLayout.astro";
+import { formateLocalDate } from "../lib/utils";
+import { getLanguage, locales } from "../i18n/utils";
+const language = getLanguage(Astro.url);
 
 const { frontmatter } = Astro.props;
 const { title, description, image, startDate, tags, canonical } = frontmatter;
@@ -22,7 +25,7 @@ const { title, description, image, startDate, tags, canonical } = frontmatter;
 
     {startDate && (
       <div class="text-sm text-light my-2 sr-only mx-auto">
-        {startDate}
+        <time datetime={startDate.toISOString()}>{formateLocalDate(startDate, undefined, locales[language])}</time>
       </div>
     )}
 

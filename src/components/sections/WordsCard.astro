@@ -1,12 +1,14 @@
 ---
 import Card from "../Card.astro";
+import { getLanguage, getUI } from "../../i18n/utils";
+const t = getUI(getLanguage(Astro.url));
 
 const { words = [] } = Astro.props;
 const safeWords = Array.isArray(words) ? words : [];
 ---
 
 <Card>
-  <div class="flex h-full flex-col justify-between gap-3">
+  <div data-quotes={JSON.stringify(safeWords)} class="flex h-full flex-col justify-between gap-3">
     <div class="flex items-start justify-between gap-3">
       <blockquote
         class="mt-6 flex-1 border-l-2 pl-6 italic"
@@ -19,7 +21,7 @@ const safeWords = Array.isArray(words) ? words : [];
         <button
           type="button"
           data-prev
-          aria-label="Frase anterior"
+          aria-label={t.previousQuote}
           class="rounded-md p-2 text-neutral-300 hover:bg-neutral-800 hover:text-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-500 disabled:opacity-40"
         >
           <!-- Flecha izquierda -->
@@ -31,7 +33,7 @@ const safeWords = Array.isArray(words) ? words : [];
         <button
           type="button"
           data-next
-          aria-label="Frase siguiente"
+          aria-label={t.nextQuote}
           class="rounded-md p-2 text-neutral-300 hover:bg-neutral-800 hover:text-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-500 disabled:opacity-40"
         >
           <!-- Flecha derecha -->
@@ -45,40 +47,33 @@ const safeWords = Array.isArray(words) ? words : [];
     <p class="pl-6 text-xs text-neutral-400" data-meta></p>
   </div>
 
-  <script define:vars={{ safeWords }}>
-    const words = safeWords;
-
-    const root = document.currentScript?.parentElement;
-    const quoteEl = root?.querySelector("[data-quote]");
-    const metaEl  = root?.querySelector("[data-meta]");
-    const prevBtn = root?.querySelector("[data-prev]");
-    const nextBtn = root?.querySelector("[data-next]");
-
-    if (!quoteEl || !Array.isArray(words) || words.length === 0) return;
-
-    let index = Number(localStorage.getItem("quoteIndex") ?? 0);
-    if (!Number.isFinite(index) || index < 0 || index >= words.length) index = 0;
-
-    const render = () => {
-      quoteEl.textContent = `“${words[index]}”`;
-      if (metaEl) metaEl.textContent = `${index + 1} / ${words.length}`;
-      localStorage.setItem("quoteIndex", String(index));
-
-      const disabled = words.length <= 1;
-      if (prevBtn) prevBtn.disabled = disabled;
-      if (nextBtn) nextBtn.disabled = disabled;
-    };
-
-    prevBtn?.addEventListener("click", () => {
-      index = (index - 1 + words.length) % words.length;
+  <script>
+  function initializeQuotes() {
+    document.querySelectorAll<HTMLElement>("[data-quotes]").forEach((root) => {
+      if (root.dataset.initialized) return;
+      const words: string[] = JSON.parse(root.dataset.quotes ?? "[]");
+      const quoteEl = root.querySelector("[data-quote]");
+      const metaEl = root.querySelector("[data-meta]");
+      const prevBtn = root.querySelector<HTMLButtonElement>("[data-prev]");
+      const nextBtn = root.querySelector<HTMLButtonElement>("[data-next]");
+      if (!quoteEl || !words.length) return;
+      root.dataset.initialized = "true";
+      let index = 0;
+      try { index = Number(localStorage.getItem("quoteIndex") ?? 0); } catch {}
+      if (!Number.isInteger(index) || index < 0 || index >= words.length) index = 0;
+      const render = () => {
+        quoteEl.textContent = "“" + words[index] + "”";
+        if (metaEl) metaEl.textContent = (index + 1) + " / " + words.length;
+        try { localStorage.setItem("quoteIndex", String(index)); } catch {}
+        if (prevBtn) prevBtn.disabled = words.length <= 1;
+        if (nextBtn) nextBtn.disabled = words.length <= 1;
+      };
+      prevBtn?.addEventListener("click", () => { index = (index - 1 + words.length) % words.length; render(); });
+      nextBtn?.addEventListener("click", () => { index = (index + 1) % words.length; render(); });
       render();
     });
-
-    nextBtn?.addEventListener("click", () => {
-      index = (index + 1) % words.length;
-      render();
-    });
-
-    render();
-  </script>
+  }
+  document.addEventListener("astro:page-load", initializeQuotes);
+  initializeQuotes();
+</script>
 </Card>

@@ -1,0 +1,29 @@
+---
+import ProjectCard from "../ProjectCard.astro";
+import Card from "../Card.astro";
+import IndexPageLayout from "../../layouts/IndexPageLayout.astro";
+import { getTaggedEntryPath, type TaggedEntry } from "../../i18n/content";
+import { getLanguage, getUI } from "../../i18n/utils";
+import { translateTag } from "../../i18n/tags";
+interface Props { tag: string; items: TaggedEntry[] }
+const { tag, items } = Astro.props;
+const language = getLanguage(Astro.url);
+const t = getUI(language);
+const title = translateTag(tag, language);
+---
+<IndexPageLayout title={title} description={t.tagDescription} subTitle={title}>
+  <div class="flex w-full flex-col gap-3">
+    {items.map(entry => {
+      const image = "image" in entry.data ? entry.data.image : undefined;
+      const description = "description" in entry.data ? entry.data.description
+        : "company" in entry.data ? entry.data.company : entry.data.author;
+      const href = getTaggedEntryPath(entry);
+      return image ? (
+        <ProjectCard href={href} heading={entry.data.title} subheading={description}
+          imagePath={image.url} altText={image.alt} />
+      ) : (
+        <Card href={href} title={entry.data.title} body={description} />
+      );
+    })}
+  </div>
+</IndexPageLayout>
